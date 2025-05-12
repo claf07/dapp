@@ -25,8 +25,6 @@ export default function AdminDashboard() {
         // Load users from localStorage
         const users = JSON.parse(localStorage.getItem('users') || '[]');
         const pendingUsers = users.filter(u => u.status === 'pending');
-        const users = JSON.parse(localStorage.getItem('users') || '[]');
-        const pendingUsers = users.filter(u => u.status === 'pending');
         const activeDonations = users.filter(u => u.role === 'donor' && u.status === 'verified').length;
         const pendingRequests = users.filter(u => u.role === 'patient' && u.status === 'pending').length;
 
