@@ -1,0 +1,59 @@
+ 
+  × the name `users` is defined multiple times
+    ╭─[/home/runner/workspace/app/contexts/AuthContext.js:40:1]
+ 40 │       setLoading(true);
+ 41 │       
+ 42 │       // Get stored users
+ 43 │       const users = JSON.parse(localStorage.getItem('users') || '[]');
+    ·             ──┬──
+    ·               ╰── previous definition of `users` here
+ 44 │       
+ 45 │       // Check if it's an admin login
+ 46 │       if (email === 'admin@example.com' && password === 'admin123') {
+ 47 │         const adminUser = {
+ 48 │           id: 'admin-1',
+ 49 │           email: email,
+ 50 │           role: 'admin',
+ 51 │           name: 'Admin User',
+ 52 │           status: 'verified',
+ 53 │           walletAddress: account || null
+ 54 │         };
+ 55 │ 
+ 56 │         try {
+ 57 │           // Create token
+ 58 │           const token = Buffer.from(JSON.stringify({
+ 59 │             id: adminUser.id,
+ 60 │             email: adminUser.email,
+ 61 │             role: adminUser.role,
+ 62 │             status: adminUser.status
+ 63 │           })).toString('base64');
+ 64 │ 
+ 65 │           // Store admin data
+ 66 │           localStorage.setItem('user', JSON.stringify(adminUser));
+ 67 │           localStorage.setItem('users', JSON.stringify([adminUser]));
+ 68 │           Cookies.set('token', token, { expires: 7 });
+ 69 │ 
+ 70 │           // Update state
+ 71 │           setUser(adminUser);
+ 72 │           
+ 73 │           // Show success notification
+ 74 │           showNotification('Admin login successful!', 'success');
+ 75 │           
+ 76 │           return adminUser;
+ 77 │         } catch (error) {
+ 78 │           console.error('Admin login error:', error);
+ 79 │           throw new Error('Failed to complete admin login');
+ 80 │         }
+ 81 │       }
+ 82 │ 
+ 83 │       // Regular user login
+ 84 │       const users = JSON.parse(localStorage.getItem('users') || '[]');
+    ·             ──┬──
+    ·               ╰── `users` redefined here
+ 85 │       const user = users.find(u => u.email === email && u.password === password);
+ 86 │       
+ 87 │       if (!user) {
+    ╰────
+
+Import trace for requested module:
+./app/contexts/AuthContext.js
