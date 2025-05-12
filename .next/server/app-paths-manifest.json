@@ -1,8 +1,6 @@
 {
-  "/not-found": "app/not-found.js",
   "/page": "app/page.js",
   "/demo/page": "app/demo/page.js",
-  "/donor/register/page": "app/donor/register/page.js",
   "/patient/register/page": "app/patient/register/page.js",
   "/login/page": "app/login/page.js",
   "/admin/dashboard/page": "app/admin/dashboard/page.js"
