@@ -29,13 +29,14 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
+      console.log('Attempting admin login with:', formData.email);
       const userData = await login(formData.email, formData.password);
       
       if (userData && userData.role === 'admin') {
         showNotification('Login successful!', 'success');
-        router.replace('/admin/dashboard');
+        router.push('/admin/dashboard');
       } else {
-        showNotification('Invalid admin credentials', 'error');
+        throw new Error('Invalid admin credentials');
       }
     } catch (error) {
       console.error('Login error:', error);

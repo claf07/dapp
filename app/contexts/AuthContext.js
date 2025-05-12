@@ -40,36 +40,41 @@ export function AuthProvider({ children }) {
       setLoading(true);
       
       // Check if it's an admin login
-      if (email === 'admin@organdonation.com' && password === 'admin124') {
+      if (email === 'admin@example.com' && password === 'admin123') {
         const adminUser = {
           id: 'admin-1',
           email: email,
           role: 'admin',
           name: 'Admin User',
-          status: 'verified'
+          status: 'verified',
+          walletAddress: account || null
         };
 
-        // Create token
-        const token = Buffer.from(JSON.stringify({
-          id: adminUser.id,
-          email: adminUser.email,
-          role: adminUser.role,
-          status: adminUser.status
-        })).toString('base64');
+        try {
+          // Create token
+          const token = Buffer.from(JSON.stringify({
+            id: adminUser.id,
+            email: adminUser.email,
+            role: adminUser.role,
+            status: adminUser.status
+          })).toString('base64');
 
-        // Store admin data
-        localStorage.setItem('user', JSON.stringify(adminUser));
-        localStorage.setItem('users', JSON.stringify([adminUser]));
-        Cookies.set('token', token, { expires: 7 });
+          // Store admin data
+          localStorage.setItem('user', JSON.stringify(adminUser));
+          localStorage.setItem('users', JSON.stringify([adminUser]));
+          Cookies.set('token', token, { expires: 7 });
 
-        // Update state
-        setUser(adminUser);
-        
-        // Show success notification
-        showNotification('Admin login successful!', 'success');
-        
-        // Return admin user
-        return adminUser;
+          // Update state
+          setUser(adminUser);
+          
+          // Show success notification
+          showNotification('Admin login successful!', 'success');
+          
+          return adminUser;
+        } catch (error) {
+          console.error('Admin login error:', error);
+          throw new Error('Failed to complete admin login');
+        }
       }
 
       // Regular user login
