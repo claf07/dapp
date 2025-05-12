@@ -5,9 +5,11 @@ import DonorBadgeABI from '../../contracts/DonorBadge.json';
 
 class ContractService {
   constructor() {
-    this.donorBadgeAddress = process.env.NEXT_PUBLIC_DONOR_BADGE_ADDRESS;
+    this.donorBadgeAddress = process.env.NEXT_PUBLIC_DONOR_BADGE_ADDRESS || "0x5FbDB2315678afecb367f032d93F642f64180aa3";
     this.contract = null;
     this.eventListeners = new Map();
+    this.provider = null;
+    this.signer = null;
   }
 
   listenToDeathEvents() {

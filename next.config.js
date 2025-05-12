@@ -11,8 +11,8 @@ const nextConfig = {
     return config;
   },
   env: {
-    NEXT_PUBLIC_INFURA_PROJECT_ID: process.env.NEXT_PUBLIC_INFURA_PROJECT_ID,
-    NEXT_PUBLIC_INFURA_PROJECT_SECRET: process.env.NEXT_PUBLIC_INFURA_PROJECT_SECRET,
+    NEXT_PUBLIC_INFURA_PROJECT_ID: "local_test",
+    NEXT_PUBLIC_INFURA_PROJECT_SECRET: "local_test",
   },
   async headers() {
     const isDev = process.env.NODE_ENV === 'development';
@@ -32,4 +32,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig;

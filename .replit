@@ -10,3 +10,31 @@ run = ["sh", "-c", "npm run dev"]
 [[ports]]
 localPort = 3000
 externalPort = 80
+
+[workflows]
+runButton = "Start DApp"
+
+[[workflows.workflow]]
+name = "Start DApp"
+author = 42567965
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node scripts/start-ganache.js &"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 5"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx hardhat run scripts/deploy.js --network localhost"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
