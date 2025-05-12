@@ -1,4 +1,4 @@
-// File: C:\Users\Admin\Desktop\organ-donation-dapp\app\layout.js
+// File: /home/runner/workspace/app/layout.js
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

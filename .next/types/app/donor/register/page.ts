@@ -1,4 +1,4 @@
-// File: C:\Users\Admin\Desktop\organ-donation-dapp\app\donor\register\page.js
+// File: /home/runner/workspace/app/donor/register/page.js
 import * as entry from '../../../../../app/donor/register/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
