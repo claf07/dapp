@@ -171,3 +171,30 @@ export default function MatchNotifications() {
     </div>
   );
 } 
+'use client';
+import { useEffect } from 'react';
+import { useNotification } from '../contexts/NotificationContext';
+import { contractService } from '../services/contractService';
+
+export default function MatchNotifications() {
+  const { showNotification } = useNotification();
+
+  useEffect(() => {
+    const contract = contractService.contract;
+    if (!contract) return;
+
+    const handleMatchFound = (donor, patient, organs) => {
+      showNotification({
+        message: `🚨 New ${organs.join(', ')} match found from donor #${donor.substring(0, 6)}`,
+        type: 'info'
+      });
+    };
+
+    contract.on('MatchFound', handleMatchFound);
+    return () => {
+      contract.off('MatchFound', handleMatchFound);
+    };
+  }, []);
+
+  return null; // This is a background component
+}

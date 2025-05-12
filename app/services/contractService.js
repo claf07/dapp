@@ -7,6 +7,18 @@ class ContractService {
   constructor() {
     this.donorBadgeAddress = process.env.NEXT_PUBLIC_DONOR_BADGE_ADDRESS;
     this.contract = null;
+    this.eventListeners = new Map();
+  }
+
+  listenToDeathEvents() {
+    if (!this.contract) return;
+    
+    const deathEvent = this.contract.events.DeathVerified();
+    deathEvent.on('data', async (event) => {
+      const { donorAddress, verifier } = event.returnValues;
+      const matches = await this.findMatchesForDonor(donorAddress);
+      this.notifyMatches(matches);
+    });
   }
 
   async init() {
