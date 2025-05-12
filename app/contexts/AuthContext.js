@@ -38,10 +38,10 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     try {
       setLoading(true);
-      
+
       // Get stored users
       const allUsers = JSON.parse(localStorage.getItem('users') || '[]');
-      
+
       // Check if it's an admin login
       if (email === 'admin@example.com' && password === 'admin123') {
         const adminUser = {
@@ -69,10 +69,10 @@ export function AuthProvider({ children }) {
 
           // Update state
           setUser(adminUser);
-          
+
           // Show success notification
           showNotification('Admin login successful!', 'success');
-          
+
           return adminUser;
         } catch (error) {
           console.error('Admin login error:', error);
@@ -82,7 +82,7 @@ export function AuthProvider({ children }) {
 
       // Regular user login
       const user = allUsers.find(u => u.email === email && u.password === password);
-      
+
       if (!user) {
         throw new Error('Invalid credentials');
       }
@@ -109,10 +109,10 @@ export function AuthProvider({ children }) {
 
       // Update state
       setUser(user);
-      
+
       // Show success notification
       showNotification('Login successful!', 'success');
-      
+
       // Return user
       return user;
     } catch (error) {
@@ -127,7 +127,7 @@ export function AuthProvider({ children }) {
   const register = async (userData) => {
     try {
       setLoading(true);
-      
+
       // Validate required fields
       const requiredFields = [
         'name', 'email', 'password', 'role', 'bloodGroup',
@@ -183,7 +183,7 @@ export function AuthProvider({ children }) {
   const updateProfile = async (updates) => {
     try {
       setLoading(true);
-      
+
       if (!user) {
         throw new Error('No user logged in');
       }
@@ -219,7 +219,7 @@ export function AuthProvider({ children }) {
 
       // Update state
       setUser(updatedUser);
-      
+
       return updatedUser;
     } catch (error) {
       console.error('Profile update error:', error);
@@ -256,4 +256,4 @@ export function useAuth() {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
-} 
+}
