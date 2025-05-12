@@ -74,6 +74,9 @@ export function Web3Provider({ children }) {
         return;
       }
 
+      await checkUserRole();
+      await loadContractData();
+
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       setProvider(provider);
 
