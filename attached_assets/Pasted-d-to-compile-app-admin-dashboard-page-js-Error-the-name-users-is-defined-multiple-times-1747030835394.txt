@@ -1,0 +1,36 @@
+d to compile
+./app/admin/dashboard/page.js
+Error: 
+  × the name `users` is defined multiple times
+    ╭─[/home/runner/workspace/app/admin/dashboard/page.js:23:1]
+ 23 │       try {
+ 24 │         setIsLoading(true);
+ 25 │         // Load users from localStorage
+ 26 │         const users = JSON.parse(localStorage.getItem('users') || '[]');
+    ·               ──┬──
+    ·                 ╰── previous definition of `users` here
+ 27 │         const pendingUsers = users.filter(u => u.status === 'pending');
+ 28 │         const users = JSON.parse(localStorage.getItem('users') || '[]');
+    ·               ──┬──
+    ·                 ╰── `users` redefined here
+ 29 │         const pendingUsers = users.filter(u => u.status === 'pending');
+ 30 │         const activeDonations = users.filter(u => u.role === 'donor' && u.status === 'verified').length;
+ 31 │         const pendingRequests = users.filter(u => u.role === 'patient' && u.status === 'pending').length;
+    ╰────
+
+  × the name `pendingUsers` is defined multiple times
+    ╭─[/home/runner/workspace/app/admin/dashboard/page.js:24:1]
+ 24 │         setIsLoading(true);
+ 25 │         // Load users from localStorage
+ 26 │         const users = JSON.parse(localStorage.getItem('users') || '[]');
+ 27 │         const pendingUsers = users.filter(u => u.status === 'pending');
+    ·               ──────┬─────
+    ·                     ╰── previous definition of `pendingUsers` here
+ 28 │         const users = JSON.parse(localStorage.getItem('users') || '[]');
+ 29 │         const pendingUsers = users.filter(u => u.status === 'pending');
+    ·               ──────┬─────
+    ·                     ╰── `pendingUsers` redefined here
+ 30 │         const activeDonations = users.filter(u => u.role === 'donor' && u.status === 'verified').length;
+ 31 │         const pendingRequests = users.filter(u => u.role === 'patient' && u.status === 'pending').length;
+    ╰────
+This error occurred during the build process and can only be dismissed by fixing the error.
