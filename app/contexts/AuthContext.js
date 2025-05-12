@@ -40,7 +40,7 @@ export function AuthProvider({ children }) {
       setLoading(true);
       
       // Get stored users
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const allUsers = JSON.parse(localStorage.getItem('users') || '[]');
       
       // Check if it's an admin login
       if (email === 'admin@example.com' && password === 'admin123') {
@@ -81,8 +81,7 @@ export function AuthProvider({ children }) {
       }
 
       // Regular user login
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
-      const user = users.find(u => u.email === email && u.password === password);
+      const user = allUsers.find(u => u.email === email && u.password === password);
       
       if (!user) {
         throw new Error('Invalid credentials');
