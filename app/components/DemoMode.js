@@ -141,7 +141,7 @@ export default function DemoMode() {
 
   const runScenario = async (scenario) => {
     setCurrentScenario(scenario);
-    
+
     for (const step of scenario.steps) {
       try {
         await executeStep(step);
@@ -205,7 +205,7 @@ export default function DemoMode() {
 
     // Simulate matching process
     const matches = await matchingService.findMatches(newPatient);
-    
+
     setDemoData(prev => ({
       ...prev,
       matches: [...prev.matches, ...matches]
@@ -245,6 +245,28 @@ export default function DemoMode() {
     }));
 
     showNotification(`Registered ${donors.length} demo donors`, 'success');
+  };
+
+  const handleDemoLogin = async (role) => {
+    try {
+      const demoUsers = {
+        admin: { email: 'admin@example.com', password: 'admin123' },
+        donor: { email: 'demo.donor@example.com', password: 'demo123' },
+        patient: { email: 'demo.patient@example.com', password: 'demo123' }
+      };
+
+      if (!demoUsers[role]) {
+        throw new Error('Invalid role');
+      }
+
+      const result = await login(demoUsers[role].email, demoUsers[role].password);
+      if (result) {
+        router.push(`/${role}/dashboard`);
+      }
+    } catch (error) {
+      console.error('Demo login failed:', error);
+      showNotification('Demo login failed', 'error');
+    }
   };
 
   return (
@@ -315,4 +337,4 @@ export default function DemoMode() {
       </div>
     </div>
   );
-} 
+}

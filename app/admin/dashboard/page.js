@@ -22,6 +22,9 @@ export default function AdminDashboard() {
     const loadDashboardData = async () => {
       try {
         setIsLoading(true);
+        // Load users from localStorage
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const pendingUsers = users.filter(u => u.status === 'pending');
         const users = JSON.parse(localStorage.getItem('users') || '[]');
         const pendingUsers = users.filter(u => u.status === 'pending');
         const activeDonations = users.filter(u => u.role === 'donor' && u.status === 'verified').length;

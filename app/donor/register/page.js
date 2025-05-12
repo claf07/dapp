@@ -33,9 +33,25 @@ export default function DonorRegister() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!account) {
-      showNotification('Please connect your wallet first', 'error');
-      return;
+    
+    try {
+      const userData = {
+        ...formData,
+        role: 'donor',
+        status: 'pending',
+        createdAt: new Date().toISOString(),
+        id: Date.now().toString()
+      };
+
+      // Store in localStorage
+      const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+      existingUsers.push(userData);
+      localStorage.setItem('users', JSON.stringify(existingUsers));
+
+      showNotification('Registration successful! Please wait for admin approval', 'success');
+      router.push('/login');
+    } catch (error) {
+      showNotification(error.message || 'Registration failed', 'error');
     }
 
     if (formData.password !== formData.confirmPassword) {

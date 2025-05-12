@@ -39,6 +39,9 @@ export function AuthProvider({ children }) {
     try {
       setLoading(true);
       
+      // Get stored users
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      
       // Check if it's an admin login
       if (email === 'admin@example.com' && password === 'admin123') {
         const adminUser = {
