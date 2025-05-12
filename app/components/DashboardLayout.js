@@ -5,15 +5,28 @@ import Link from 'next/link';
 import { useAuth } from '../contexts/AuthContext';
 import { useNotification } from '../contexts/NotificationContext';
 
+import { useRouter } from 'next/navigation';
+
 const DashboardLayout = ({ title, children }) => {
   const { user } = useAuth();
   const { showNotification } = useNotification();
+  const router = useRouter();
+
+  const handleLinkClick = (href) => {
+    if (href === '/') {
+      // Handle logout
+      logout();
+      router.push('/');
+    } else {
+      router.push(href);
+    }
+  };
 
   const commonLinks = [
     { name: 'Overview', href: `/${user?.role}/dashboard` },
-    { name: 'Profile', href: `/${user?.role}/profile` },
-    { name: 'Notifications', href: `/${user?.role}/notifications` },
-    { name: 'Help / FAQ', href: '/faq' },
+    { name: 'Profile', href: `/${user?.role}/dashboard/profile` },
+    { name: 'Notifications', href: `/${user?.role}/dashboard/notifications` },
+    { name: 'Help / FAQ', href: '/dashboard/faq' },
     { name: 'Logout', href: '/' },
   ];
 
@@ -56,13 +69,13 @@ const DashboardLayout = ({ title, children }) => {
         </div>
         <nav className="p-4 space-y-2">
           {getLinks().map((link) => (
-            <Link
+            <button
               key={link.name}
-              href={link.href}
-              className="block px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-blue-700"
+              onClick={() => handleLinkClick(link.href)}
+              className="block w-full text-left px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-blue-700"
             >
               {link.name}
-            </Link>
+            </button>
           ))}
         </nav>
       </aside>
