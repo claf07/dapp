@@ -28,7 +28,7 @@ const AdminLogin = () => {
 
     try {
       const userData = await login(formData.email, formData.password);
-      
+
       if (userData && userData.role === 'admin') {
         showNotification('Login successful!', 'success');
         router.replace('/admin/dashboard');

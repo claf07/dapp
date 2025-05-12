@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
     try {
       // For admin, check hardcoded credentials
       if (role === 'admin') {
-        if (mobileNumber === '9894472788' && password === 'qwertyuiop') {
+        if (mobileNumber === 'admin@example.com' && password === 'admin123') {
           const userData = { role: 'admin', token: 'admin-token' };
           localStorage.setItem('token', userData.token);
           localStorage.setItem('userRole', userData.role);
@@ -98,4 +98,4 @@ export function AuthProvider({ children }) {
       {!loading && children}
     </AuthContext.Provider>
   );
-} 
+}
