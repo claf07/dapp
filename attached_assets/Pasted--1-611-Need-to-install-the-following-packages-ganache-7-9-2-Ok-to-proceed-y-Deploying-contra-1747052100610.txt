@@ -1,0 +1,62 @@
+[1] 611
+Need to install the following packages:
+ganache@7.9.2
+Ok to proceed? (y) Deploying contracts...
+Error HH100: Network ganache doesn't exist
+
+For more info go to https://hardhat.org/HH100 or run Hardhat with --show-stack-traces
+Failed to deploy contracts: Error: Command failed: npx hardhat run scripts/deploy.js --network ganache
+    at checkExecSyncError (node:child_process:890:11)
+    at execSync (node:child_process:962:15)
+    at Timeout._onTimeout (/home/runner/workspace/scripts/start-ganache.js:34:5)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7) {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 632,
+  stdout: null,
+  stderr: null
+}
+[1] 611
+Starting Ganache...
+Need to install the following packages:
+ganache@7.9.2
+Ok to proceed? (y) Deploying contracts...
+Error HH100: Network ganache doesn't exist
+
+For more info go to https://hardhat.org/HH100 or run Hardhat with --show-stack-traces
+Failed to deploy contracts: Error: Command failed: npx hardhat run scripts/deploy.js --network ganache
+    at checkExecSyncError (node:child_process:890:11)
+    at execSync (node:child_process:962:15)
+    at Timeout._onTimeout (/home/runner/workspace/scripts/start-ganache.js:34:5)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7) {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 632,
+  stdout: null,
+  stderr: null
+}
+[1] 611
+Starting Ganache...
+Need to install the following packages:
+ganache@7.9.2
+Ok to proceed? (y) Deploying contracts...
+Error HH100: Network ganache doesn't exist
+
+For more info go to https://hardhat.org/HH100 or run Hardhat with --show-stack-traces
+Failed to deploy contracts: Error: Command failed: npx hardhat run scripts/deploy.js --network ganache
+    at checkExecSyncError (node:child_process:890:11)
+    at execSync (node:child_process:962:15)
+    at Timeout._onTimeout (/home/runner/workspace/scripts/start-ganache.js:34:5)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7) {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 632,
+  stdout: null,
+  stderr: null
+}
