@@ -35,12 +35,36 @@ export default function DonorRegister() {
     e.preventDefault();
     
     try {
+      // Validate required fields
+      const requiredFields = ['name', 'email', 'password', 'bloodType', 'age'];
+      const missingFields = requiredFields.filter(field => !formData[field]);
+      
+      if (missingFields.length > 0) {
+        showNotification(`Please fill in all required fields: ${missingFields.join(', ')}`, 'error');
+        return;
+      }
+
+      if (formData.password !== formData.confirmPassword) {
+        showNotification('Passwords do not match', 'error');
+        return;
+      }
+
+      const selectedOrgans = Object.entries(formData.organs)
+        .filter(([_, selected]) => selected)
+        .map(([organ]) => organ);
+
+      if (selectedOrgans.length === 0) {
+        showNotification('Please select at least one organ to donate', 'error');
+        return;
+      }
+
       const userData = {
         ...formData,
         role: 'donor',
         status: 'pending',
         createdAt: new Date().toISOString(),
-        id: Date.now().toString()
+        id: Date.now().toString(),
+        organs: selectedOrgans
       };
 
       // Store in localStorage

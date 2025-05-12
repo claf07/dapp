@@ -42,13 +42,29 @@ export default function PatientRegister() {
       return;
     }
 
+    // Validate required fields
+    const requiredFields = [
+      'name', 'email', 'password', 'bloodType', 'age',
+      'hospitalName', 'doctorName', 'doctorContact'
+    ];
+    const missingFields = requiredFields.filter(field => !formData[field]);
+    
+    if (missingFields.length > 0) {
+      showNotification(`Please fill in all required fields: ${missingFields.join(', ')}`, 'error');
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       showNotification('Passwords do not match', 'error');
       return;
     }
 
-    if (!formData.bloodType) {
-      showNotification('Blood group is required', 'error');
+    const requiredOrgans = Object.entries(formData.requiredOrgans)
+      .filter(([_, selected]) => selected)
+      .map(([organ]) => organ);
+
+    if (requiredOrgans.length === 0) {
+      showNotification('Please select at least one required organ', 'error');
       return;
     }
 
